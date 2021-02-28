@@ -10,7 +10,7 @@ namespace Bari.AWS.Domain
         private string _Timestamp;
 
         public string MessageId { get; set; }
-        public static Guid MicroServiceId { get; set; }
+        public Guid MicroServiceId { get; set; }
         public string RequisitionId { get; set; }
         public string ReceiptHandle { get; set; }
         public string MD5OfBody { get; set; }
@@ -28,8 +28,8 @@ namespace Bari.AWS.Domain
 
         public BariMessage() {
             Timestamp = Stamp.GetTimestamp(DateTime.Now);
-            Body = "Hello World";
-        }        
+            Body = "Hello World";            
+        }                
 
         private PropertyInfo[] _PropertyInfos = null;
 

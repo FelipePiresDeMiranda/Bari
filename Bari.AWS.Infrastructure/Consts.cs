@@ -6,6 +6,6 @@ namespace Bari.AWS.Infrastructure
 {
     public static class Consts
     {
-        public const String HOST = "localhost:9092";
+        public const String HOST = "http://127.0.0.1:9092";
     }
 }

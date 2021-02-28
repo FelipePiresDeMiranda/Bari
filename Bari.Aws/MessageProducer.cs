@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using Amazon;
-using Amazon.Runtime.Internal.Transform;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using Bari.AWS.Domain;
 using Bari.AWS.Infrastructure;
-//using Confluent.Kafka;
+using Serilog;
 
 namespace Bari.Aws
 {
@@ -17,15 +13,17 @@ namespace Bari.Aws
     {
         public static IAmazonSQS sqs = new AmazonSQSClient(RegionEndpoint.SAEast1);
         public static string myQueueUrl;
+        public static Guid _microserviceId = Guid.NewGuid();
 
         public static void Sender()
-        {
-            //using var awsProducer = new ProducerBuilder<Null, string>(new ProducerConfig { BootstrapServers = Consts.HOST }).Build();
-            //{
-                try
-                {                
-
+        {            
+            Log.Logger = new LoggerConfiguration()                
+                .WriteTo.File("log-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();            
+            try
+                {                                
                 Console.WriteLine("Creating a new Messages Queue...\n");
+                Log.Information("Creating a new Messages Queue...");
 
                 var sqsRequest = new CreateQueueRequest
                 {
@@ -51,16 +49,20 @@ namespace Bari.Aws
                         timer.Interval = 5000;
                         timer.Enabled = true;
 
+                        Log.Information("Message sended to BariMessagesQueue.");
                         Console.WriteLine("Press \'q\' to quit the Message Producer.");
                         while (Console.Read() != 'q') ;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    Log.Error(ex.InnerException.Message);
+                    throw ex;
                 }
-            //}            
+                finally 
+                {
+                    Log.CloseAndFlush();
+                }                         
         }
 
         private static async void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -73,17 +75,20 @@ namespace Bari.Aws
             var sqsMessageRequest = new SendMessageRequest
             {
                 QueueUrl = myQueueUrl,
-                MessageBody = message.Body
+                MessageBody = message.Body                
             };
-
-            //Ao preencher as propriedades da mensagem a mesma foi rejeitada pelo serviço da Amazon.
-            //foreach (var _property in message.GetType().GetProperties())
-            //{
-            //    var attribute = new MessageAttributeValue();
-            //    var value = _property.GetValue(message, null) ?? "(null)";
-            //    attribute.StringValue = value.ToString();
-            //    sqsMessageRequest.MessageAttributes.Add(_property.Name, attribute);
-            //}
+            message.MessageId = Guid.NewGuid().ToString();
+            message.MicroServiceId = _microserviceId;
+            message.RequisitionId = Guid.NewGuid().ToString();
+            
+            foreach (var _property in message.GetType().GetProperties())
+            {
+                var attribute = new MessageAttributeValue();
+                var value = _property.GetValue(message, null) ?? "(null)";
+                attribute.StringValue = value.ToString();
+                attribute.DataType = "String";
+                sqsMessageRequest.MessageAttributes.Add(_property.Name, attribute);
+            }            
             await sqs.SendMessageAsync(sqsMessageRequest);
             Console.WriteLine("Message sended to BariMessagesQueue.\n");
         }

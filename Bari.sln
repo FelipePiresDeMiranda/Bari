@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bari.Aws", "Bari.Aws\Bari.Aws.csproj", "{0A5D5582-09E5-40B2-B426-26EB41547A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bari.AWS.Consumer", "Bari.AWS.Consumer\Bari.AWS.Consumer.csproj", "{98287BFF-501B-4665-9C91-75DCA0BAF5C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bari.AWS.Consumer", "Bari.AWS.Consumer\Bari.AWS.Consumer.csproj", "{98287BFF-501B-4665-9C91-75DCA0BAF5C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bari.AWS.Domain", "Bari.AWS.Domain\Bari.AWS.Domain.csproj", "{8F653C42-7015-4A70-9616-8CD5557E5DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bari.AWS.Domain", "Bari.AWS.Domain\Bari.AWS.Domain.csproj", "{8F653C42-7015-4A70-9616-8CD5557E5DDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bari.AWS.Infrastructure", "Bari.AWS.Infrastructure\Bari.AWS.Infrastructure.csproj", "{395F5268-2CB2-4392-8AB0-E85FE30E0855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bari.AWS.Infrastructure", "Bari.AWS.Infrastructure\Bari.AWS.Infrastructure.csproj", "{395F5268-2CB2-4392-8AB0-E85FE30E0855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bari.AWS.Producer", "Bari.AWS.Producer\Bari.AWS.Producer.csproj", "{78E384B5-95DF-4738-A15D-1B28E1DA54CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A5D5582-09E5-40B2-B426-26EB41547A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A5D5582-09E5-40B2-B426-26EB41547A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A5D5582-09E5-40B2-B426-26EB41547A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A5D5582-09E5-40B2-B426-26EB41547A06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98287BFF-501B-4665-9C91-75DCA0BAF5C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98287BFF-501B-4665-9C91-75DCA0BAF5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98287BFF-501B-4665-9C91-75DCA0BAF5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{395F5268-2CB2-4392-8AB0-E85FE30E0855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{395F5268-2CB2-4392-8AB0-E85FE30E0855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{395F5268-2CB2-4392-8AB0-E85FE30E0855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78E384B5-95DF-4738-A15D-1B28E1DA54CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78E384B5-95DF-4738-A15D-1B28E1DA54CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78E384B5-95DF-4738-A15D-1B28E1DA54CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78E384B5-95DF-4738-A15D-1B28E1DA54CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Bari.Aws
+namespace Bari.AWS.Producer
 {
     class Program
     {

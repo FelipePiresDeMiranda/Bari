@@ -12,7 +12,7 @@ using Bari.AWS.Infrastructure;
 using Confluent.Kafka;
 using Serilog;
 
-namespace Bari.Aws
+namespace Bari.AWS.Producer
 {
     class MessageKafkaProducer
     {        

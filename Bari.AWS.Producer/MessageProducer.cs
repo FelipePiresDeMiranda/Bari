@@ -7,7 +7,7 @@ using Bari.AWS.Domain;
 using Bari.AWS.Infrastructure;
 using Serilog;
 
-namespace Bari.Aws
+namespace Bari.AWS.Producer
 {
     class MessageProducer
     {
